@@ -9,19 +9,16 @@ class PRN_Cron
     /**
      * Plugin activation
      */
-<?php
-
-if (!defined('ABSPATH')) {
-    exit;
-}
-
-class PRN_Cron
-{
-    /**
-     * Plugin activation
-     */
     public static function activate()
     {
+        /**
+         * Add custom 15-minute schedule
+         */
+        add_filter(
+            'cron_schedules',
+            [__CLASS__, 'add_cron_intervals']
+        );
+
         /**
          * Schedule cron if not already scheduled
          */
@@ -35,7 +32,7 @@ class PRN_Cron
         }
 
         PRN_Logger::log(
-            'Cron activated (hourly)'
+            'Cron activated'
         );
     }
 
@@ -43,13 +40,14 @@ class PRN_Cron
      * Plugin deactivation
      */
     public static function deactivate()
-        {
-            wp_clear_scheduled_hook('prn_import_cron');
+    {
+        wp_clear_scheduled_hook(
+            'prn_import_cron'
+        );
 
-            PRN_Logger::log(
-                'Cron deactivated'
-            );
-        }
+        PRN_Logger::log(
+            'Cron deactivated'
+        );
     }
 
     /**
@@ -57,7 +55,7 @@ class PRN_Cron
      */
     public static function add_cron_intervals($schedules)
     {
-        $schedules['prn_every_fifteen_minutes'] = [
+        $schedules['hourly'] = [
             'interval' => 900,
             'display'  => __(
                 'Every 15 Minutes',
