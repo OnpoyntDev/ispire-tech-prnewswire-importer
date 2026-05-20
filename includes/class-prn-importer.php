@@ -15,7 +15,7 @@ class PRN_Importer
     /**
      * Maximum imports per run
      */
-    const MAX_IMPORTS = 10;
+    const MAX_IMPORTS = 100;
 
     /**
      * Main cron runner

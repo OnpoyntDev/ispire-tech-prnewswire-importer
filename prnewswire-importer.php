@@ -37,6 +37,8 @@ require_once PRN_IMPORTER_PATH . 'includes/class-prn-taxonomy.php';
 
 require_once PRN_IMPORTER_PATH . 'includes/class-prn-logger.php';
 
+require_once PRN_IMPORTER_PATH . 'includes/class-prn-admin.php';
+
 /**
  * Activation hook
  */
